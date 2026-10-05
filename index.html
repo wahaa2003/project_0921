@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>網站前端技術應用 - 課程介紹</title>
+  <style>
+    /* CSS Reset & 基礎設定 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* 頁首區塊 */
+    header {
+      background-color: #1e293b;
+      color: #ffffff;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+    }
+
+    /* 導覽列區塊 */
+    nav {
+      background-color: #334155;
+      padding: 0.75rem 1.5rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    /* 主要內容區塊 */
+    main {
+      max-width: 800px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    section {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      color: #0f172a;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* 按鈕樣式 */
+    .btn {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-bottom: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #0369a1;
+    }
+
+    /* 大綱清單樣式 */
+    .syllabus-list {
+      list-style-type: decimal;
+      padding-left: 1.25rem;
+    }
+
+    .syllabus-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* JavaScript 切換顯示用 Class */
+    .hidden {
+      display: none;
+    }
+
+    /* 頁尾區塊 */
+    footer {
+      background-color: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頁首：課程與教師名稱 -->
+  <header>
+    <h1 id="course-title">載入中...</h1>
+    <p>授課教師：<span id="course-instructor">載入中...</span></p>
+  </header>
+
+  <!-- 語意化導覽列 -->
+  <nav aria-label="主選單">
+    <ul>
+      <li><a href="#overview">課程目標</a></li>
+      <li><a href="#syllabus">教學大綱</a></li>
+    </ul>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <main>
+    <!-- Section 1：課程目標 -->
+    <section id="overview">
+      <h2>課程目標</h2>
+      <p>本課程專為研究所學生設計，旨在深耕現代網頁前端技術架構。課程內容涵蓋 HTML5 語意化建構、CSS3 進階版面佈局（Flexbox/Grid）、JavaScript 非同步處理與 ES6+ 現代語法，並引導學生理解元件化開發思維與效能優化策略，培養具備實戰能力的進階前端開發人才。</p>
+    </section>
+
+    <!-- Section 2：教學大綱與展開/收合控制 -->
+    <section id="syllabus">
+      <h2>教學大綱</h2>
+      <button id="toggle-btn" class="btn" type="button">收合大綱</button>
+      
+      <div id="syllabus-content">
+        <ol class="syllabus-list">
+          <li>現代前端工程概覽與開發環境建置</li>
+          <li>語意化 HTML5 與 Web accessibility (a11y) 規範</li>
+          <li>CSS3 進階版面佈局：Flexbox 與 CSS Grid 實務</li>
+          <li>ES6+ JavaScript 核心機制與 DOM 操作</li>
+          <li>非同步程式設計 (Promises, Async/Await) 與 API 串接</li>
+          <li>前端模組化設計與現代框架概念簡介</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>&copy; 2026 網站前端技術應用 研究所課程. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 1. 建立包含課程基本資訊的物件
+    const courseInfo = {
+      title: "網站前端技術應用",
+      instructor: "王佳盈",
+      code: "FE-501",
+      credits: 3
+    };
+
+    // 2. DOM 載入後進行初始化操作
+    document.addEventListener("DOMContentLoaded", () => {
+      // 將資料渲染至頁面標頭
+      document.getElementById("course-title").textContent = courseInfo.title;
+      document.getElementById("course-instructor").textContent = courseInfo.instructor;
+
+      // 取得控制按鈕與大綱內容區塊
+      const toggleBtn = document.getElementById("toggle-btn");
+      const syllabusContent = document.getElementById("syllabus-content");
+
+      // 3. 綁定按鈕點擊事件，切換展開/收合狀態
+      toggleBtn.addEventListener("click", () => {
+        // 切換 .hidden class
+        syllabusContent.classList.toggle("hidden");
+
+        // 判斷目前是否已隱藏
+        const isHidden = syllabusContent.classList.contains("hidden");
+
+        // 更新按鈕文字
+        toggleBtn.textContent = isHidden ? "展開大綱" : "收合大綱";
+
+        // 在主控台 Console 印出目前狀態
+        console.log(`[教學大綱區塊狀態]: ${isHidden ? "已收合 (Hidden)" : "已展開 (Visible)"}`);
+      });
+    });
+  </script>
+
+</body>
+</html>
